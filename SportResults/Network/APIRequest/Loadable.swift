@@ -10,7 +10,6 @@ import SwiftUI
 protocol Loadable: ObservableObject {
   associatedtype Output
   var state: LoadingState<Output> { get }
-  var loadingOutput: Output { get }
   func load()
 }
 
@@ -18,5 +17,5 @@ enum LoadingState<Output> {
   case idle
   case failed(Error)
   case loaded(Output)
-  case loading(Output)
+  case loading
 }

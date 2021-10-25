@@ -21,8 +21,8 @@ struct AsyncLoadableView<Source: Loadable, Content: View>: View {
         Text(error.localizedDescription)
       case .idle:
         EmptyView()
-      case .loading(let output):
-        content(output).redacted(reason: .placeholder)
+      case .loading:
+        ProgressView()
       case .loaded(let output):
         content(output)
       }

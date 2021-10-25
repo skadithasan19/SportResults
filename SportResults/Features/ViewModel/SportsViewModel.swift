@@ -11,22 +11,18 @@ import Combine
 class SportsViewModel: ObservableObject, SportsResultProtocol, Loadable {
  
   typealias Output = [String: [SportInfoProtocol]]
-  
   @Published var state: LoadingState<Output> = .idle
-  
-  var loadingOutput: Output = Placeholder.sportsResults()
-
   var apiSession: APISessionProtocol
   
   private var cancellables = Set<AnyCancellable>()
   
   init(apiSession: APISessionProtocol = APISession()) {
     self.apiSession = apiSession
-    self.load() 
+    self.load()
   }
   
   func load() {
-    self.state = .loading(loadingOutput)
+    self.state = .loading
     self.sportsResult()
       .receive(on: DispatchQueue.main)
       .sink { [weak self] result in
