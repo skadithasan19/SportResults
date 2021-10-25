@@ -14,7 +14,7 @@ SportsViewModel: ViewModel
 
 View
 1. SportResultsApp setting up the landing page for showing the “Get Result” button. After tapping it user see the lists
-2. In ContentView I am using Asyncloadableview for showing “redacted” loading animation which is apple recommended for human interface guideline[know its not required but did it to make it look good]
+2. In ContentView I am using Asyncloadableview for showing loading animation as per the design
 3. According to the given design I build the text but I also added the time label to see the right order by time
 4.   buildGameResultView: method build the Result cell by pulling right model data
 
