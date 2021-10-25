@@ -17,3 +17,8 @@ View
 2. In ContentView I am using Asyncloadableview for showing “redacted” loading animation which is apple recommended for human interface guideline[know its not required but did it to make it look good]
 3. According to the given design I build the text but I also added the time label to see the right order by time
 4.   buildGameResultView: method build the Result cell by pulling right model data
+
+Adding More types to sports
+
+1. First we need create new Model like others and then set a new enum type in SportModel enum 
+2. Parse new model like other and load it in the array in SportsBucket
