@@ -8,9 +8,10 @@
 import Foundation
 
 class Placeholder {
-  static func sportsResults() -> [SportInfoProtocol] {
+  static func sportsResults() -> [String: [SportInfoProtocol]] {
     guard let path = Bundle.main.path(forResource: "sampleResults", ofType: "json") else { preconditionFailure() }
     let jsonData = try! Data(contentsOf: URL(fileURLWithPath: path))
-    return try! JSONDecoder().decode(SportsBucket.self, from: jsonData).sports
+    let sports = try! JSONDecoder().decode(SportsBucket.self, from: jsonData).sports
+   return sports.group { $0.publicationDate.toLongDateFormat.toString(format: "MMM dd, yyyy") }
   }
 }

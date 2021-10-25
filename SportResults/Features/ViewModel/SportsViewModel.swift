@@ -10,7 +10,7 @@ import Combine
  
 class SportsViewModel: ObservableObject, SportsResultProtocol, Loadable {
  
-  typealias Output = [SportInfoProtocol]
+  typealias Output = [String: [SportInfoProtocol]]
   
   @Published var state: LoadingState<Output> = .idle
   
@@ -28,13 +28,15 @@ class SportsViewModel: ObservableObject, SportsResultProtocol, Loadable {
   func load() {
     self.state = .loading(loadingOutput)
     self.sportsResult()
+      .receive(on: DispatchQueue.main)
       .sink { [weak self] result in
         if case .failure(let error) = result {
           self?.state = .failed(error)
         }
     } receiveValue: { bucket in
-      let sortedData = bucket.sports.sorted(by: { $0.publicationDate.toDateFormat > $1.publicationDate.toDateFormat })
-      self.state = .loaded(sortedData)
+      let sortedData = bucket.sports.sorted(by: { $0.publicationDate.toLongDateFormat > $1.publicationDate.toLongDateFormat })
+      let dictionaryByMonth = sortedData.group { $0.publicationDate.toLongDateFormat.toString(format: "MMM dd, yyyy") }
+      self.state = .loaded(dictionaryByMonth)
     }.store(in: &cancellables)
   }
 }
