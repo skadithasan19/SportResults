@@ -12,8 +12,12 @@ struct ListBuilder: View {
   var body: some View {
     if let sports = sports {
       ForEach(sports.indices, id: \.self) { index in
-        VStack(alignment: .leading, spacing: 4) {
-          Text(sports[index].publicationDate.toLongDateFormat.toTimeFormat()).font(.headline)
+        VStack(alignment: .leading, spacing: 10) {
+          HStack {
+            Text(sports[index].sportsType.sportName).font(.headline).fontWeight(.medium)
+            Spacer()
+            Text(sports[index].publicationDate.toLongDateFormat.toTimeFormat()).font(.footnote).fontWeight(.bold)
+          }
           buildGameResultView(sport: sports[index])
         }.padding([.top, .bottom], 5)
       }

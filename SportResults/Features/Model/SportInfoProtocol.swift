@@ -12,6 +12,19 @@ enum SportModel {
   case nbaResults(NbaResult)
   case Tennis(Tennis)
   case unknown
+  
+  var sportName: String {
+    switch self {
+    case .f1Results( _):
+      return "F1"
+    case .nbaResults( _):
+      return "NBA"
+    case .Tennis( _):
+      return "Tennis"
+    case .unknown:
+      return ""
+    }
+  }
 }
 
 protocol SportInfoProtocol: Codable, AnyObject {
