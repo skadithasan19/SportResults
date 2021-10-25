@@ -22,3 +22,5 @@ Adding More types to sports
 
 1. First we need create new Model like others and then set a new enum type in SportModel enum 
 2. Parse new model like other and load it in the array in SportsBucket
+
+<img width="661" alt="Screen Shot 2021-10-25 at 1 15 45 AM" src="https://user-images.githubusercontent.com/6060441/138643722-52b28d10-4865-4caa-a781-2f5134246ff3.png">
